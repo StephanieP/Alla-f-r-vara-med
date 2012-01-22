@@ -1,5 +1,5 @@
 <?php
-// Kan enbart köras som FxS_core.php är inkluderad före.
+// Kan enbart kï¿½ras som FxS_core.php ï¿½r inkluderad fï¿½re.
 if (!defined("_EXECUTE")) { echo "Not allowed"; exit;}
 
 /*
@@ -7,15 +7,15 @@ if (!defined("_EXECUTE")) { echo "Not allowed"; exit;}
  *
  * Class: AllaKan_Mysql
  *
- * Innehåller subklass av FxS_Mysql för att skapa standard
+ * Innehï¿½ller subklass av FxS_Mysql fï¿½r att skapa standard
  * anslutning till databas.
  */
 
 class AllaKan_Mysql extends FxS_Mysql{
-	protected $dbuser = "root";
+	protected $dbuser = "";
 	protected $dbpass = "";
-	protected $dbhost = "localhost";
-	protected $dbname = "fpix_com";
+	protected $dbhost = "";
+	protected $dbname = "";
 	
 	public function __construct() {}
 }
