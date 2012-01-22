@@ -1,6 +1,6 @@
 <?php 
-	// Hämta $template från den globala domänen
-	global $template; 
+	// Hämta variabler från den globala domänen
+	global $template, $USER; 
 
 	// Se till att javascript och css är en array
 	$css 	= is_array($template->css) ? $template->css : array();
@@ -25,14 +25,22 @@
 
 	<header>
     	<nav id="ui_user_navigation">
-        	<ul>
-            	<li>
-                	<a href="/login/">Logga in</a>
-                </li>
-                <li>
-                	<a href="/register/">Bli medlem</a>
-                </li>
-            </ul>
+        	<?php if (!$USER->is_logon()): ?>
+                <ul>
+                    <li>
+                        <a href="/login/">Logga in</a>
+                    </li>
+                    <li>
+                        <a href="/register/">Bli medlem</a>
+                    </li>
+                </ul>
+            <?php else: ?>
+            	<ul class="is_logon">
+                    <li>
+                        <a href="/logout/"><img src="/graphics/header/logout_button.png" title="Logga ut" /></a>
+                    </li>
+                </ul>
+            <?php endif; ?>
         </nav>
         
         <div id="ui_top_image">
