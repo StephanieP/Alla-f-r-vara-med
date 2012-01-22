@@ -1,2 +1,3 @@
 <?php global $template; ?>
-Det här är startsidan.
+
+<p>Startsidan!</p>

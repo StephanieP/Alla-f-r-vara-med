@@ -47,12 +47,19 @@
         </div>
         
     	<nav id="ui_main_navigation">
+        	<ul>
+            	<li>
+                	<a href="/">Start</a>
+                </li>
+            </ul>
         </nav>
     </header>
     
     <div id="ui_wrapper">
     	<aside id="ui_sidebar">
-        	Har ej någon funktion ännu =(
+        	<p>
+        		Har ej någon funktion ännu =(
+            </p>
         </aside>
         
         <article id="ui_page">
