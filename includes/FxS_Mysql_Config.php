@@ -1,5 +1,5 @@
 <?php
-// Kan enbart k�ras som FxS_core.php �r inkluderad f�re.
+// Kan enbart köras om FxS_core.php är inkluderad före.
 if (!defined("_EXECUTE")) { echo "Not allowed"; exit;}
 
 /*
@@ -7,7 +7,7 @@ if (!defined("_EXECUTE")) { echo "Not allowed"; exit;}
  *
  * Class: AllaKan_Mysql
  *
- * Inneh�ller subklass av FxS_Mysql f�r att skapa standard
+ * Innehåller subklass av FxS_Mysql för att skapa standard
  * anslutning till databas.
  */
 
