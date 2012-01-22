@@ -20,4 +20,5 @@ class AllaKan_Mysql extends FxS_Mysql{
 	public function __construct() {}
 }
 
+
 ?>
