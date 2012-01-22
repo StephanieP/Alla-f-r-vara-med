@@ -104,3 +104,17 @@ input[type="submit"] {
 	float: right;
 	background-image: URL(/graphics/sidebar/bg.png);
 }
+
+
+
+.ui_error {
+	border: solid 1px #333333;
+	border-radius: 5px;
+	
+	width: 215px;
+	padding: 5px;
+	margin: 3px 0px;
+	
+	color: #000;
+	background-color: #FAC5C6;
+}

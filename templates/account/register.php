@@ -3,7 +3,14 @@
 <h1>Bli medlem</h1>
 
 
-<input type="text" placeholder="Välj ett användarnamn..." /><br />
-<input type="password" placeholder="Välj ett lösenord..." /><br />
-<input type="password" placeholder="Lösenordet igen..." /><br />
-<input type="submit" value="Logga in" />
+<form action="" method="post">
+    <input type="text" placeholder="Välj ett användarnamn..." name="username" /><br />
+    <input type="password" placeholder="Välj ett lösenord..." name="password" /><br />
+    <input type="password" placeholder="Lösenordet igen..." name="password_verify" /><br />
+    <input type="submit" value="Bli medlem" />
+</form>
+<?php if (isset($template->error)): ?>
+    <div class="ui_error">
+    	<?php echo $template->error; ?>
+    </div>
+<?php endif; ?>

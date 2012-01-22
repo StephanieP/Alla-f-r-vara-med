@@ -1,4 +1,10 @@
 <?php
+// Kan enbart köras som FxS_core.php är inkluderad före.
+if (!defined("_EXECUTE")) {
+	echo "Not allowed";
+	exit;
+}
+
 /*****************************************************************************************
  * FxS_User - Beta V0.1
  *
@@ -86,8 +92,7 @@
  *		Exceptions. Om tillexempel användarnamnet finns. Dessa måste vi fånga:
  *
  *>			try {
- *>				$USER->username = $_POST['username'];
- *>				$USER->register($_POST['password']);
+ *>				$USER->register($_POST['username'], $_POST['password']);
  *>			}
  *>			catch (Missing_Argument_Error $e) {
  *>				//Användarnamn eller lösenord är inte satt
@@ -151,11 +156,7 @@
  *
  *
  ******************************************************************************************/
-// Kan enbart köras som FxS_core.php är inkluderad före.
-if (!defined("_EXECUTE")) {
-	echo "Not allowed";
-	exit;
-}
+
 class FxS_User {
 	public $username;
 	public $login_id;
@@ -237,10 +238,22 @@ class FxS_User {
 		$username = trim($username);
 		$strval = new FxS_String_Validation;
 		$strval->min_length = 4;
-		$strval->validate($password);
+		try {
+			$strval->validate($password);
+		}
+		catch (FxS_Validation_Length_Error $e) {
+			throw new FxS_Password_Error;
+		}
+		
 		$strval->max_length = 20;
 		$strval->regex      = "/^[a-z0-9_åäöÅÄÖ]+$/i";
-		$strval->validate($username);
+		try {
+			$strval->validate($username);
+		}
+		catch (FxS_Validation_Length_Error $e) {
+			throw new FxS_Username_Error;
+		}
+		
 		$query = $this->mysql->execute(
 			"SELECT * 
 			FROM fxs_login_accounts 
@@ -250,10 +263,9 @@ class FxS_User {
 		if($user) {
 			throw new FxS_Dublicate_Entery_Error;
 		}
-		$activated = 1;
-		if ($req_activation) {
-			$activated = 0;
-		}
+		
+		$activated = $req_activation ? 0 : 1;
+
 		$pass_hash = FxS_Security::pass_crypt($username, $password);
 		$query = $this->mysql->execute(
 			"INSERT INTO `fxs_login_accounts` (

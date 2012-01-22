@@ -12,6 +12,7 @@ class FxS_Login_Not_Activated_Error extends Exception{};
 
 class FxS_Missing_Argument_Error extends Exception{};
 class FxS_Dublicate_Entery_Error extends Exception{};
+class FxS_Not_Match_Error extends Exception{};
 
 class FxS_Validation_Length_Error extends Exception {};
 class FxS_Validation_Char_Error extends Exception {};
