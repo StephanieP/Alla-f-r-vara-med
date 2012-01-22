@@ -12,7 +12,7 @@ if (!defined("_EXECUTE")) { echo "Not allowed"; exit;}
  */
 
 class AllaKan_Mysql extends FxS_Mysql{
-	protected $dbuser = "";
+	protected $dbuser = "User";
 	protected $dbpass = "";
 	protected $dbhost = "";
 	protected $dbname = "";
