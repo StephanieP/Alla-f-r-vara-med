@@ -6,7 +6,7 @@ $template = new AllaKan_Template;
 // Om formulär postat, försök registrera
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	try {
-		if (!isset($_POST['password'], $_POST['password_verify'])) {
+		if (!isset($_POST['username'], $_POST['password'], $_POST['password_verify'])) {
 			throw new FxS_Missing_Argument_Error;
 		}
 		if ($_POST['password'] != $_POST['password_verify']) {

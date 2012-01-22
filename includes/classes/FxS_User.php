@@ -232,9 +232,6 @@ class FxS_User {
 	}
 
 	public function register($username, $password, $req_activation = false) {
-		if(!isset($username, $password)) {
-			throw new FxS_Missing_Argument_Error;	
-		}
 		$username = trim($username);
 		$strval = new FxS_String_Validation;
 		$strval->min_length = 4;
