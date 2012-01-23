@@ -3,7 +3,8 @@ require_once ("../includes/FxS_Core.php");
 
 //Om inte inloggad, kasta till startsidan
 if (!$USER->is_logon()) {
-	header("Location: /");	
+	header("Location: /");
+	exit;
 }
 
 $template = new AllaKan_Template;
