@@ -24,6 +24,8 @@ if (!$template->is_profile_admin) {
 	exit;
 }
 
+$profile = new FxS_Profile($template->profile_login_id, "l.login_username,p.profile_text");
+
 //Om postat
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	if (isset($_POST['profile_text'])) {
@@ -36,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 // Vad ska editeras?
 $edit_value = $URI->value(2);
 
-$profile = new FxS_Profile($template->profile_login_id, "l.login_username,p.profile_text");
+
 
 $template->profile_username = $profile->get_username();
 $template->profile_text 	= $profile->get_profile_text();
