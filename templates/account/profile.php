@@ -20,7 +20,7 @@
 					// Om användaren är på sin egen profil
 					if ($template->is_profile_admin): ?>
 					<li>
-						<a href="/account/edit/text/">Ändra text</a>
+						<a href="/account/edit/text/<?php echo $template->profile_login_id; ?>/">Ändra text</a>
 					</li>
 				<?php endif; ?>
 				</ul>

@@ -13,7 +13,7 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="/account/">Tillbaka till profilen</a>
+                        <a href="/account/<?php echo $template->profile_login_id; ?>/">Tillbaka till profilen</a>
                     </li>
                 </ul>
             </nav>

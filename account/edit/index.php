@@ -7,28 +7,46 @@ if (!$USER->is_logon()) {
 	exit;
 }
 
-
 $template = new AllaKan_Template;
 
-$profile_user_id = is_numeric($URI->value(1)) ? $URI->value(1) : $USER->login_id;
+// Om inget id är angett, ta inloggad användares id
+$template->profile_login_id = is_numeric($URI->value(3)) ? $URI->value(3) : $USER->login_id;
 
-$profile = new FxS_Profile($profile_user_id);
+// Har användaren rätt att editera?
+$template->is_profile_admin = false;
+if ($template->profile_login_id == $USER->login_id || $USER->is_privileged('user_admin')) {
+	$template->is_profile_admin = true;
+}
 
-$template->is_profile_admin = $profile_user_id == $USER->login_id ? true : false;
-$template->profile_username = $profile->get_username();
-$template->profile_text = $profile->get_profile_text();
+// Skicka till profil om inte rätt att editera
+if (!$template->is_profile_admin) {
+	header("Location: /account/" . $template->profile_login_id . "/");
+	exit;
+}
 
 //Om postat
-if ($template->is_profile_admin && $_SERVER['REQUEST_METHOD'] == "POST") {
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	if (isset($_POST['profile_text'])) {
 		$profile->set_profile_text($_POST['profile_text']);
-		header("Location: /account/");
+		header("Location: /account/" . $template->profile_login_id . "/");
+		exit;
 	}
 }
 
+// Vad ska editeras?
+$edit_value = $URI->value(2);
 
+$profile = new FxS_Profile($template->profile_login_id, "l.login_username,p.profile_text");
 
-$template->title = "Mitt konto | Alla får vara med";
-$template->display("account/edit/text.php");
+$template->profile_username = $profile->get_username();
+$template->profile_text 	= $profile->get_profile_text();
+$template->title 			= "Mitt konto | Alla får vara med";
+
+if ($edit_value == "text") {
+	$template->display("account/edit/text.php");
+}
+else {
+	$template->display("account/profile.php");
+}
 
 ?>

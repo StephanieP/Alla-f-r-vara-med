@@ -32,6 +32,10 @@ if (!defined("_EXECUTE")) {
  *	hantera användarna.
  *
  *
+ **PRIVILEGIER
+ *
+ *		user_admin			- Ändra användarinformation
+ *
  **FUNKTIONER
  *	__construct($mysql)				- FxS_Mysql ->
  *

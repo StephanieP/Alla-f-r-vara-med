@@ -49,7 +49,7 @@
             <?php endif; ?>
         </nav>
         
-        <div id="ui_top_image">
+        <div id="ui_top_image" onclick="top.location.href='/';" style="cursor: pointer;">
         </div>
         
     	<nav id="ui_main_navigation">
