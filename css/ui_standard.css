@@ -73,8 +73,9 @@ input[type="submit"] {
 
 #ui_user_navigation .is_logon li {
 	float: left;
-	padding: 10px;
+	padding: 10px 5px 10px 10px;
 }
+
 
 #ui_user_navigation ul li a {
 	text-decoration: none;

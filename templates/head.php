@@ -1,4 +1,7 @@
 <?php 
+	// Kan enbart köras om FxS_core.php är inkluderad före.
+	if (!defined("_EXECUTE")) { echo "Not allowed"; exit;}
+
 	// Hämta variabler från den globala domänen
 	global $template, $USER; 
 
@@ -38,6 +41,9 @@
             	<ul class="is_logon">
                     <li>
                         <a href="/logout/"><img src="/graphics/header/logout_button.png" title="Logga ut" /></a>
+                    </li>
+                    <li>
+                        <a href="/account/"><img src="/graphics/header/account_button.png" title="Konto" /></a>
                     </li>
                 </ul>
             <?php endif; ?>

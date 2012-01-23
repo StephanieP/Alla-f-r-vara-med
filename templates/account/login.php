@@ -1,4 +1,8 @@
-<?php global $template; ?>
+<?php
+	// Dessa två rader ska vara högst upp i alla templates
+	global $template; 
+	if (!defined("_EXECUTE")) { echo "Not allowed"; exit;}
+?>
 
 <h1>Logga in</h1>
 
