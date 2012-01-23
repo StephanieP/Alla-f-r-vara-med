@@ -47,7 +47,7 @@ if ($USER->is_logon()) {
 	header("Location: /");	
 }
 
-$template->title = "Bli medlem | Alla kan";
+$template->title = "Bli medlem | Alla får vara med";
 $template->display("account/register.php");
 
 ?>

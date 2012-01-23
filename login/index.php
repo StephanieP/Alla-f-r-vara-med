@@ -32,7 +32,7 @@ if ($USER->is_logon()) {
 	header("Location: /");	
 }
 
-$template->title = "Logga in | Alla kan";
+$template->title = "Logga in | Alla får vara med";
 $template->display("account/login.php");
 
 ?>
