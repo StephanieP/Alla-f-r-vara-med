@@ -15,7 +15,7 @@ body {
 
 h1 {
 	font-size: 24px;
-		margin: 0px;	
+	margin: 0px;	
 	padding: 0px;
 }
 
@@ -29,18 +29,6 @@ header {
 ::-webkit-input-placeholder { color:#666; }
 input:-moz-placeholder { color:#666; }
 
-input:not([type="submit"]) {
-	border: solid 1px #333333;
-	border-radius: 5px;
-	
-	width: 215px;
-	padding: 5px;
-	margin: 3px 0px;
-	
-	color: #000;
-	background-color: #FFF;
-}
-
 textarea {
 	border: solid 1px #333333;
 	border-radius: 5px;
@@ -50,6 +38,20 @@ textarea {
 	padding: 5px;
 	margin: 3px 0px;
 	
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000;
+	background-color: #FFF;
+}
+
+input:not([type="submit"]) {
+	border: solid 1px #333333;
+	border-radius: 5px;
+	
+	width: 215px;
+	padding: 5px;
+	margin: 3px 0px;
+	
+	font-family: Arial, Helvetica, sans-serif;
 	color: #000;
 	background-color: #FFF;
 }
@@ -59,7 +61,8 @@ input[type="submit"] {
 	border: solid 1px #333333;
 	border-radius: 5px;
 	color: #000;
-	
+
+	font-family: Arial, Helvetica, sans-serif;
 	padding: 5px;
 	margin: 3px 0px;
 }
@@ -102,6 +105,7 @@ input[type="submit"] {
 #ui_top_image {
 	height: 100px;
 	background-color: #FFFFFF;
+	background-image: URL(/graphics/header/bg_circles.png);
 }
 
 
