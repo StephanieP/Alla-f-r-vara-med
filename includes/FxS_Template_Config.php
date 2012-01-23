@@ -2,23 +2,24 @@
 // Kan enbart köras som FxS_core.php är inkluderad före.
 if (!defined("_EXECUTE")) { echo "Not allowed"; exit;}
 
-/*
- * FxS_template_config.php
+/********************************************************************************
+ **Författare
+ *	Denna fil är skapad av Felix Stridsberg, Linköping, 2012-01-22. Denna fil och 
+ *	tillhörande filer får fritt användas för privat bruk.
+ *	Utförliga guider för användning finns på: http://webbprogrammering.ifokus.se
  *
- * Class: AllaKan_Template
+ ** INFO
+ * Denna fil innehåller klassen AllaKan_Template, används för att separera html från
+ * php på ett smidigt sätt.
  *
- * Innehåller subklass av FxS_Template för att skapa standard
- * templates.
- */
+ * Läs mer om hur denna används i superklassen: FxS_Template (FxS_Template.php)
+ *******************************************************************************/
  
  
 class AllaKan_Template extends FxS_Template {
 	public $header_file;
 	public $footer_file;
 	public function __construct() {
-		global $USER;
-		
-		// Om ej definierad
 		$this->title 		= "Alla får vara med - Projekt";
 		$this->css 			= array();
 		$this->javascript 	= array();

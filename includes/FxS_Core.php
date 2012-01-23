@@ -1,12 +1,16 @@
 <?php
-
-/* FxS_core.php
+/********************************************************************************
+ **Författare
+ *	Denna fil är skapad av Felix Stridsberg, Linköping, 2011-06-01. Denna fil och 
+ *	tillhörande filer får fritt användas för privat bruk.
+ *	Utförliga guider för användning finns på: http://webbprogrammering.ifokus.se
  *
+ ** INFO
  * Denna fil är hjärtat i FxS php-galleri.
  * Denna fil ska ligga importerad högst upp i alla filer som 
  * använder sig av någon klass i FxS php-galleri.
  *
- */
+ *******************************************************************************/
 
 session_start();
 ob_start();

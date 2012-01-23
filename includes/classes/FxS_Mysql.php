@@ -1,7 +1,10 @@
 <?php
+ // Kan enbart köras som FxS_core.php är inkluderad före.
+if (!defined("_EXECUTE")) { echo "Not allowed"; exit;}
+
 /*****************************************************************************************
-****NEW count_rows()
-*
+ *
+ *
  **Författare
  *	Denna fil är skapad av Felix Stridsberg, Linköping, 2011-06-10. Denna fil och 
  *	tillhörande filer får fritt användas för privat bruk.
@@ -55,7 +58,6 @@
  *
  *
  *	Skapa subclass för att slippa skriva inloggningsinformation
- *	(Skapas förslagsvis längst ner i denna fil)
  *
  *>		class MysqlConn extends FxS_Mysql {
  *>			protected $dbuser = "FxSuser";
@@ -72,11 +74,6 @@
  *>		$user = $query->fetch_row();
  *
  ******************************************************************************************/
- // Kan enbart köras som FxS_core.php är inkluderad före.
-if (!defined("_EXECUTE")) {
-	echo "Not allowed";
-	exit;
-}
 class FxS_Mysql {
 	protected $dbconn;
 	protected $dbhost;

@@ -33,43 +33,46 @@ if (!defined("_EXECUTE")) {
  *
  *
  **FUNKTIONER
- *	__construct($mysql)				- Tar databasanslutning som argument.
+ *	__construct($mysql)				- FxS_Mysql ->
  *
- *	login(string $username,			- Logga in användare
- *		  string $password)	 		OBS! Lösenordet ska skickas okrypterat.
+ *	login($username,			- Sträng x Sträng ->
+ *		  $password)	 		  Loggar in användare
+ *
+ *		Exception för login:
+ *			FxS_Username_Error 		- Användarnamnet finns ej
+ *			FxS_Password_Error 		- Lösenordet är fel
+ *			FxS_Login_Locked_Error	- Kontot är låst
  *							  		
  *
- *	logout()						- Loggar ut användaren och nollställer sessioner
+ *	logout()						- ->
+ *									  Loggar ur användaren
  *
- *	is_logon()						- Kontrollerar om användaren är inloggad i systemet.
+ *	is_logon()						- -> Sanningsvärde
+ *									  Kontrollerar om användaren är inloggad.
  *
- *	is_privileged(string $priv)		- Kontrollerar om användaren har ett visst privilegie
- *							  		Text, $USER->is_privileged('admin'); retunerar sant
- *							 		om användaren har privilegiet admin.
+ *	is_privileged(string $priv)		- Sträng -> Sanningsvärde
+ *									  Kontrollerar om användaren innehar ett specifikt privilegie.
  *
- *	register(string $username,		- Registrerar användaren om inte användarnamnet är upptaget
- *			 string $password) 		OBS! Lösenordet krypteras av funktionen, okrypterat 
+ *
+ *	register($username,		- Sträng x Sträng ->
+ *			 $password) 	  Registrerar en användare.
  *							  		lösenord ska skickas som argument.
  * 
+ *		Exception för register:
+ *			FxS_Username_Error 			- Användarnamnet för kort eller för långt (4-20 tecken)
+ *			FxS_Validation_Char_Error	- Användarnamnet innehåller felaktiga tecken (A-ö1-9_)
+ *			FxS_Password_Error 			- Lösenordet är för kort, minst 4 tecken
+ *			FxS_Dublicate_Entery_Error 	- Användarnamnet är upptaget
  *
- **PUBLIKA VAIABLER (OBS! BÖR EJ ÄNDRAS UTIFRÅN, ENBART LÄSAS AV)
+ *
+ **PUBLIKA VAIABLER (READ ONLY!)
+ *	$username
  *	$login_id		- Användarens ID.
  *	$login_time		- Tid i unix-time då användaren loggad in.
  *	$login_ip		- Användarens ip-adress.
+ *	$last_login		- Tid i unix-time då användaren loggad in förra gången.
+ *	$last_login_ip	- Användarens ip-adress från förra inloggningen.
  *
- *
- **EXCEPTIONS
- *	Inloggning
- *		FxS_Login_Error 				- Om användarnamn eller lösenord är fel
- *		FxS_Login_Locked_Error			- Om användaren är låst
- *		FxS_Login_Not_Activated_Error - Kontot inte aktiverat
- *
- * 	Registrering
- *		FxS_Missing_Argument_Error - Lösenord eller användarnamn saknas
- *		FxS_Dublicate_Entery_Error - Användarnamnet är upptaget
- *			FxS_Validation_Char_Error   - (Class: String_Validation) om användarnamn innehåller ogilltiga tecken 
- *			FxS_Validation_Length_Error - (Class: String_Validation) om lösenord eller användarnamn är kortare än 
- *									  4 tecken eller användarnamn är längre än 20 tecken.
  *
  *
  **EXEMPEL
@@ -84,8 +87,7 @@ if (!defined("_EXECUTE")) {
  *		Detta görs förslagsvis i filen register.php eller liknande. Vi antar att vi har
  *		två postade variabler från HTML, $_POST['username'] och $_POST['password'].
  *
- *>			$USER->username = $_POST['username'];
- *>			$USER->register($_POST['password']);
+ *>			$USER->register($_POST['username'], $_POST['password']);
  *
  *		Funktionen tar hand om sanering av input-data så vi behöver inte oroa oss för 
  *		SQL-injections (hackare). Observera att detta kan resultera i att vi får 
@@ -94,19 +96,10 @@ if (!defined("_EXECUTE")) {
  *>			try {
  *>				$USER->register($_POST['username'], $_POST['password']);
  *>			}
- *>			catch (Missing_Argument_Error $e) {
- *>				//Användarnamn eller lösenord är inte satt
- *>			}
- *>			catch (Dublicate_Entery_Error $e) {
- *>				//Användarnamnet är upptaget
- *>			}
- *>			catch (Validation_Char_Error $e) {
- *>				//Ogilltiga tecken i användarnamnet
- *>			}
- *>			catch (Validation_Length_Error $e) {
- *>				// Lösenord eller användarnamn är kortare än 4 tecken eller
- *>				// användarnamn är längre än 20 tecken.
- *>			}
+ *>			catch (Validation_Char_Error $e) {}
+ *>			catch (FxS_Username_Error $e) {}
+ *>			catch (FxS_Password_Error $e) {}
+ *>			catch (Dublicate_Entery_Error $e) {}
  *
  *
  * 
@@ -114,8 +107,13 @@ if (!defined("_EXECUTE")) {
  *		Det räcker med att logga in användaren en gång. Sen är användaren inloggad ända 
  *		tills användaren loggar ut eller stänger webbläsaren.
  *
- *>			$USER->username = "Användarnamn";
- *>			$USER->login("lösenord");
+ *>			try {
+ *>				$USER->login($_POST['username'], $_POST['password']);
+ *>			}
+ *>			catch(FxS_Username_Error $e) {}
+ *>			catch(FxS_Password_Error $e) {}
+ *>			catch(FxS_Login_Locked_Error $e) {}
+ *
  *
  *		Även här sköter funktionen sanering av data så det är lugnt att skicka in 
  *		$_POST-variabler direkt som argument. Även denna funktion kan slänga exceptions
@@ -164,8 +162,6 @@ class FxS_User {
 	public $login_ip;
 	public $last_ip;
 	public $last_login;
-	public $unreaded_guestbook;
-	public $avatar_name;
 	private $activated;
 	private $privileges;
 	private $mysql;

@@ -1,4 +1,7 @@
 <?php
+ // Kan enbart köras som FxS_core.php är inkluderad före.
+if (!defined("_EXECUTE")) { echo "Not allowed"; exit;}
+
 /************************************************************************************
  * FxS_String - BETA V0.1
  *
@@ -60,11 +63,7 @@
  *>			//Felaktiga tecken i strängen 
  *>		}
  **************************************************************************************/
- // Kan enbart köras som FxS_core.php är inkluderad före.
-if (!defined("_EXECUTE")) {
-	echo "Not allowed";
-	exit;
-}
+
 class FxS_String_Validation {
 	public $max_length;
 	public $min_length;
@@ -92,6 +91,7 @@ class FxS_String_Validation {
 	}
 }
 
+/*
 class FxS_Text {
 	public $bbcode;
 	public $htmlentites;
@@ -135,5 +135,5 @@ class FxS_Text {
 		$text = str_ireplace($smilies,$smilies_replace,$text); 
 		return $text;	
 	}
-}
+}*/
 ?>

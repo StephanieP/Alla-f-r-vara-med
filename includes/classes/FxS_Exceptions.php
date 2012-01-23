@@ -1,9 +1,7 @@
 <?php
 // Kan enbart köras som FxS_core.php är inkluderad före.
-if (!defined("_EXECUTE")) {
-	echo "Not allowed";
-	exit;
-}
+if (!defined("_EXECUTE")) {echo "Not allowed"; exit;}
+
 class FxS_Username_Error extends Exception{};
 class FxS_Password_Error extends Exception{};
 class FxS_Activation_Error extends Exception{};

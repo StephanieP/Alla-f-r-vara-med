@@ -2,12 +2,16 @@
 // Kan enbart köras om FxS_core.php är inkluderad före.
 if (!defined("_EXECUTE")) {echo "Not allowed"; exit;}
 
-/*
- * FxS_constants.php
+/********************************************************************************
+ **Författare
+ *	Denna fil är skapad av Felix Stridsberg, Linköping, 2012-01-22. Denna fil och 
+ *	tillhörande filer får fritt användas för privat bruk.
+ *	Utförliga guider för användning finns på: http://webbprogrammering.ifokus.se
  *
- * Definierar konstanter som kan användas över hela sajten där 
- * FxS_core.php är importerad.
- */
+ ** INFO
+ * Denna fil innehåller enbart konstanter.
+ *
+ *******************************************************************************/
 
 // Php
 define("INCLUDE_PATH", dirname(__FILE__) . "/");

@@ -1,9 +1,40 @@
 <?php
 // Kan enbart köras som FxS_core.php är inkluderad före.
-if (!defined("_EXECUTE")) {
-	echo "Not allowed";
-	exit;
-}
+if (!defined("_EXECUTE")) {echo "Not allowed"; exit;}
+
+/*****************************************************************************************
+ *
+ **Författare
+ *	Denna fil är skapad av Felix Stridsberg, Linköping, 2011-08-18. Denna fil och 
+ *	tillhörande filer får fritt användas för privat bruk.
+ *	Utförliga guider för användning finns på: http://webbprogrammering.ifokus.se
+ *
+ *
+ **INFO
+ *	Denna fil innehåller FxS_Pageing. Gör det möjligt att dela upp databasresultat över 
+ *	flera numrerade sidor.
+ *
+ *
+ **FUNKTIONER för FxS_Pageing
+ *	__construct($total_count,	- Heltal x Heltal x Heltal -> 
+ *				$per_page,		  $total_count  - Totalt antal poster att lista
+ *				$page)	      	  $per_page		- Antal poster per sida
+ *								  $page		- Vilken sida vi vill visa
+ *
+ * prev_page()				- -> Heltal/null
+ *							 Retunerar nummer på föregående sida, null om vi står på första sidan.
+ *
+ * next_page()				- -> Heltal/null
+ *							 Retunerar nummer på nästa sida, null om vi står på sista sidan.
+ *
+ * generate_links($style)	- Sträng -> Sträng
+ *							  Skicka in en länkstil som t.ex: <a href="/sida/:num/">:page</a>
+ *							  Och få tillbaka en sträng med alla länkar till alla sidor.
+ *							  :num - Byts mot sidnummer för adress och $page
+ *							  :page - Byts mot det synliga sidnumret
+ *															
+ *
+ ******************************************************************************************/
 class FxS_Pageing {
 	public $total;
 	public $per_page;
@@ -11,12 +42,12 @@ class FxS_Pageing {
 	public $start_page;
 	public $start;
 	
-	public function __construct($total_count, $per_page, $start) {
+	public function __construct($total_count, $per_page, $page) {
 		$this->total 		= $total_count;
 		$this->per_page 	= intval($per_page);
 		$this->total_pages 	= (int)((($total_count-1) / $per_page) + 1);
-		$this->start_page 	= intval($start);
-		$this->start 		= $start * $this->per_page;
+		$this->start_page 	= intval($page);
+		$this->start 		= $page * $this->per_page;
 	}
 
 	public function prev_page () {
