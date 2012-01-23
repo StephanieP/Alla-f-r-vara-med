@@ -56,6 +56,16 @@ CREATE TABLE IF NOT EXISTS `fxs_login_privileges` (
   KEY `login_id` (`login_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `fxs_profile`
+--
+
+CREATE TABLE IF NOT EXISTS `fxs_profile` (
+  `login_id` int(11) NOT NULL,
+  `profile_email` varchar(50) COLLATE utf8_swedish_ci DEFAULT NULL,
+  `profile_text` text COLLATE utf8_swedish_ci,
+  PRIMARY KEY (`login_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;

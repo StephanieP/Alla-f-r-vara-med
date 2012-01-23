@@ -14,6 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		}
 		
 		$USER->register($_POST['username'], $_POST['password']);
+		
+		//Skapa profil åt användaren
+		new FxS_Profile($USER->login_id);
 	}
 	// Användarnamn eller lösenord fattas
 	catch (FxS_Missing_Argument_Error $e) {

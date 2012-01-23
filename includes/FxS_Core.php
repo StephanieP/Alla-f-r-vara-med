@@ -53,6 +53,7 @@ $MYSQL->connect();	//Anslutning krävs för FxS_Security
  */
 require_once(CLASS_PATH . "FxS_Security.php");
 require_once(CLASS_PATH . "FxS_User.php");
+require_once(CLASS_PATH . "FxS_Profile.php");
 require_once(CLASS_PATH . "FxS_Address.php");
 require_once(CLASS_PATH . "FxS_Template.php");
 require_once(CLASS_PATH . "FxS_String.php");

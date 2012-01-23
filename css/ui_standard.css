@@ -41,6 +41,19 @@ input:not([type="submit"]) {
 	background-color: #FFF;
 }
 
+textarea {
+	border: solid 1px #333333;
+	border-radius: 5px;
+	
+	width: 430px;
+	height: 250px;
+	padding: 5px;
+	margin: 3px 0px;
+	
+	color: #000;
+	background-color: #FFF;
+}
+
 input[type="submit"] {
 	background-color: #F4F4F4;
 	border: solid 1px #333333;
