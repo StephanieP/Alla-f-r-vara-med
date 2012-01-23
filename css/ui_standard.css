@@ -165,3 +165,42 @@ input[type="submit"] {
 	color: #000;
 	background-color: #FAC5C6;
 }
+
+
+
+/* Användarprofilerna */
+
+.user_profile_content {
+	width: 420px;
+	padding: 0px 0px 0px 10px;
+	float: right;
+}
+
+.user_profile_menu {
+	width: 204px;
+	padding: 0px 10px 0px 0px;
+	float: left;
+	
+	border-right: solid 1px #8c98ac;
+}
+
+.user_profile_image {
+	width: 205px;
+	height: 150px;
+	background:#CCC;
+}
+
+.user_profile_menu ul{
+	padding: 10px 0px 0px 0px;
+	margin: 0px;
+	list-style: none;
+}
+
+.user_profile_menu ul li a{
+	text-decoration: none;
+	color: #000;
+	display: block;
+	width: 205px;
+	padding: 10px 0px;
+	border-bottom: solid 1px #8c98ac;
+}
